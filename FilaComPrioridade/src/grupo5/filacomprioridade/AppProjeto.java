@@ -71,7 +71,7 @@ public class AppProjeto {
 				}
 		}while(escolha != 0);
 			System.out.println("Foram atendiadas " + somador + " pessoas");
-			System.out.println("Programa fechou");
+			System.out.println("Programa executado com sucesso");
 		scan.close();
 		
 	}
