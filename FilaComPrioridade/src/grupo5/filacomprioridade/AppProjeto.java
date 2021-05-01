@@ -1,6 +1,10 @@
+
 package grupo5.filacomprioridade;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 
 public class AppProjeto {
@@ -14,43 +18,51 @@ public class AppProjeto {
 			float mediaNormal, mediaPrioritaria;
 			
 			do {
-				System.out.print("1- Inserir pessoa na fila normal;\n2- Inserir pessoa na fila prioritaria;\n3- Atender pessoa ;\n4- Mostrar pessoas na fila;\n5- Gerar estátisticas sobre atendimento;\n0- Sair\n");
-				escolha = Integer.parseInt(scan.nextLine());
+				escolha = Integer.parseInt(JOptionPane.showInputDialog(null, "1- Inserir pessoa na fila normal;\n2- Inserir pessoa na fila prioritaria;\n3- Atender pessoa ;\n4- Mostrar pessoas na fila;\n5- Gerar estátisticas sobre atendimento;\n0- Sair\n"));
 				
 				switch(escolha) {
 				case 1:
-					System.out.println("Nome?");
-					nome = scan.nextLine();
+					
+					nome = JOptionPane.showInputDialog(null, "Nome?");
 					normal.enqueue(nome);
 					break;
 					
 				case 2:
-					System.out.println("Nome?");
-					nome = scan.nextLine();
+					nome = JOptionPane.showInputDialog(null, "Nome?");
 					prioritario.enqueue(nome);
 					break;
 				
 				case 3:
-					if(prioritario.getIsEmpty() && !normal.getIsEmpty()) {
-						System.out.println(normal.dequeue() + " foi atendido(a).");
-					}else if(!prioritario.getIsEmpty()){
-						System.out.println(prioritario.dequeue() + " foi atendido(a).");
+					
+					if(prioritario.isEmpty() && !normal.isEmpty()) {
+						
+						JOptionPane.showMessageDialog(null, normal.dequeue() + " foi atendido(a).");
+						
 					}else {
-						System.out.println("As filas estão vazias.");
-					}
+						try {
+							
+							JOptionPane.showMessageDialog(null,prioritario.dequeue() + " foi atendido(a).");
+							
+						}catch(NoSuchElementException exception) {
+							
+							JOptionPane.showMessageDialog(null, "As filas estão vazias.", ":(", JOptionPane.ERROR_MESSAGE);
+							
+						}
+					}	
+					 
 					break;
 					
 				case 4:
-					if(!prioritario.getIsEmpty()) {
-						System.out.println("Fila prioritária:\n" + prioritario);
+					if(!prioritario.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Fila prioritária:\n" + prioritario);
 					}else {
-						System.out.println("Ninguem está na fila prioritária.");
+						JOptionPane.showMessageDialog(null, "Ninguem está na fila prioritária.");
 					}
 					System.out.print("\n");
-					if(!normal.getIsEmpty()) {
-						System.out.println("Fila normal:\n" + normal);
+					if(!normal.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Fila normal:\n" + normal);
 					}else {
-						System.out.println("Ninguem está na fila normal.");
+						JOptionPane.showMessageDialog(null, "Ninguem está na fila normal.");
 					}
 					System.out.print("\n");
 					break;
@@ -58,19 +70,20 @@ public class AppProjeto {
 					somador = normal.getPessoasAtendidas() + prioritario.getPessoasAtendidas();
 					mediaNormal = (float)normal.getPessoasAtendidas()/somador * 100;
 					mediaPrioritaria = (float)prioritario.getPessoasAtendidas()/somador * 100;
-					System.out.printf("De um total de %d pessoas atendidas, %.2f%% foi na fila normal e %.2f%% foi na fila prioritaria.\n", somador, mediaNormal, mediaPrioritaria);
+					JOptionPane.showMessageDialog(null,String.format("De um total de %d pessoas atendidas, %.2f%% foi na fila normal e %.2f%% foi na fila prioritaria.\n", somador, mediaNormal, mediaPrioritaria));
+					break;
 				case 0:
-					if(prioritario.getIsEmpty() && normal.getIsEmpty()) {
+					if(prioritario.isEmpty() && normal.isEmpty()) {
 						somador = normal.getPessoasAtendidas() + prioritario.getPessoasAtendidas();
 						break;
 					}else {
-						System.out.println("Ainda tem gente na fila.");
+						JOptionPane.showMessageDialog(null,"Ainda tem gente na fila." , ":(", JOptionPane.ERROR_MESSAGE);
 						escolha = -1;
 						break;
 					}
 				}
 		}while(escolha != 0);
-			System.out.println("Foram atendiadas " + somador + " pessoas");
+			JOptionPane.showMessageDialog(null,"Foram atendiadas " + somador + " pessoas");
 			System.out.println("Programa executado.");
 		scan.close();
 		

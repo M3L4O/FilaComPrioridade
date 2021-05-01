@@ -3,7 +3,6 @@ package grupo5.filacomprioridade;
 import java.util.NoSuchElementException;
 
 public class FilaComPrioridade {
-	private boolean isEmpty;
 	private Node inicio;
 	private Node fim;
 	private int pessoasAtendidas = 0, tam = 0;
@@ -14,12 +13,12 @@ public class FilaComPrioridade {
 	}
 	
 	public FilaComPrioridade() {
-		 isEmpty = true;
 		 inicio = null;
 		 fim = null;
 	}
-	public boolean getIsEmpty() {
-		return this.isEmpty;
+	public boolean isEmpty() {
+		if(inicio == null) return true;
+		else return false;
 	}
 	
 	public int getPessoasAtendidas() {
@@ -41,17 +40,15 @@ public class FilaComPrioridade {
 			fim.prox = elem;
 			fim = elem;
 		}
-		isEmpty = false;
+		
 		
 	}
 	
-	public String dequeue() throws NoSuchElementException{
+	public String dequeue() {
+		if(isEmpty()) throw new NoSuchElementException();
 		String nome;
 		nome = inicio.nome;
 		inicio = inicio.prox;
-		if(inicio == null) {
-			isEmpty = true;
-		}
 		pessoasAtendidas++;
 		return nome;
 	}
