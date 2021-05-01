@@ -80,7 +80,13 @@ public class AppProjeto {
 					somador = normal.getPessoasAtendidas() + prioritario.getPessoasAtendidas();
 					mediaNormal = (float)normal.getPessoasAtendidas()/somador * 100;
 					mediaPrioritaria = (float)prioritario.getPessoasAtendidas()/somador * 100;
-					JOptionPane.showMessageDialog(null,String.format("De um total de %d pessoas atendidas, %.2f%% foi na fila normal e %.2f%% foi na fila prioritaria.\n", somador, mediaNormal, mediaPrioritaria));
+					
+					if(somador>0) {
+						JOptionPane.showMessageDialog(null,String.format("De um total de %d pessoas atendidas, %.2f%% foi na fila normal e %.2f%% foi na fila prioritaria.\n", somador, mediaNormal, mediaPrioritaria));
+					}else {
+						JOptionPane.showMessageDialog(null, "Ninguém foi atendido ainda.");
+					}		
+						
 					break;
 				case 0:
 					if(prioritario.isEmpty() && normal.isEmpty()) {
