@@ -18,7 +18,17 @@ public class AppProjeto {
 			float mediaNormal, mediaPrioritaria;
 			
 			do {
-				escolha = Integer.parseInt(JOptionPane.showInputDialog(null, "1- Inserir pessoa na fila normal;\n2- Inserir pessoa na fila prioritaria;\n3- Atender pessoa ;\n4- Mostrar pessoas na fila;\n5- Gerar est·tisticas sobre atendimento;\n0- Sair\n"));
+				
+				try {
+					
+					escolha = Integer.parseInt(JOptionPane.showInputDialog(null, "1- Inserir pessoa na fila normal;\n2- Inserir pessoa na fila prioritaria;\n3- Atender pessoa ;\n4- Mostrar pessoas na fila;\n5- Gerar est√°tisticas sobre atendimento;\n0- Sair\n"));
+				
+				}catch(NumberFormatException exception) {
+					
+					JOptionPane.showMessageDialog(null, "Digite uma escolha v√°lida.", ":(", JOptionPane.ERROR_MESSAGE);
+					continue;
+				}
+				
 				
 				switch(escolha) {
 				case 1:
@@ -45,7 +55,7 @@ public class AppProjeto {
 							
 						}catch(NoSuchElementException exception) {
 							
-							JOptionPane.showMessageDialog(null, "As filas est„o vazias.", ":(", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "As filas est√£o vazias.", ":(", JOptionPane.ERROR_MESSAGE);
 							
 						}
 					}	
@@ -54,15 +64,15 @@ public class AppProjeto {
 					
 				case 4:
 					if(!prioritario.isEmpty()) {
-						JOptionPane.showMessageDialog(null, "Fila priorit·ria:\n" + prioritario);
+						JOptionPane.showMessageDialog(null, "Fila priorit√°ria:\n" + prioritario);
 					}else {
-						JOptionPane.showMessageDialog(null, "Ninguem est· na fila priorit·ria.");
+						JOptionPane.showMessageDialog(null, "Ninguem est√° na fila priorit√°ria.");
 					}
 					System.out.print("\n");
 					if(!normal.isEmpty()) {
 						JOptionPane.showMessageDialog(null, "Fila normal:\n" + normal);
 					}else {
-						JOptionPane.showMessageDialog(null, "Ninguem est· na fila normal.");
+						JOptionPane.showMessageDialog(null, "Ninguem est√° na fila normal.");
 					}
 					System.out.print("\n");
 					break;
