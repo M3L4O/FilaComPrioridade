@@ -7,7 +7,7 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 
-public class AppProjeto {
+public class AppFila {
 	public static void main(String[] args) {
 			int escolha = -1;
 			String nome = "";
@@ -21,11 +21,11 @@ public class AppProjeto {
 				
 				try {
 					
-					escolha = Integer.parseInt(JOptionPane.showInputDialog(null, "1- Inserir pessoa na fila normal;\n2- Inserir pessoa na fila prioritaria;\n3- Atender pessoa ;\n4- Mostrar pessoas na fila;\n5- Gerar estÃ¡tisticas sobre atendimento;\n0- Sair\n"));
+					escolha = Integer.parseInt(JOptionPane.showInputDialog(null, "1- Inserir pessoa na fila normal;\n2- Inserir pessoa na fila prioritária;\n3- Atender pessoa ;\n4- Mostrar pessoas na fila;\n5- Gerar estatísticas sobre atendimento;\n0- Sair\n"));
 				
 				}catch(NumberFormatException exception) {
 					
-					JOptionPane.showMessageDialog(null, "Digite uma escolha vÃ¡lida.", ":(", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Digite uma escolha válida.", ":(", JOptionPane.ERROR_MESSAGE);
 					continue;
 				}
 				
@@ -55,7 +55,7 @@ public class AppProjeto {
 							
 						}catch(NoSuchElementException exception) {
 							
-							JOptionPane.showMessageDialog(null, "As filas estÃ£o vazias.", ":(", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "As filas estão vazias.", ":(", JOptionPane.ERROR_MESSAGE);
 							
 						}
 					}	
@@ -64,15 +64,15 @@ public class AppProjeto {
 					
 				case 4:
 					if(!prioritario.isEmpty()) {
-						JOptionPane.showMessageDialog(null, "Fila prioritÃ¡ria:\n" + prioritario);
+						JOptionPane.showMessageDialog(null, "Fila prioritãoria:\n" + prioritario);
 					}else {
-						JOptionPane.showMessageDialog(null, "Ninguem estÃ¡ na fila prioritÃ¡ria.");
+						JOptionPane.showMessageDialog(null, "Ninguem estão na fila prioritária.");
 					}
 					System.out.print("\n");
 					if(!normal.isEmpty()) {
 						JOptionPane.showMessageDialog(null, "Fila normal:\n" + normal);
 					}else {
-						JOptionPane.showMessageDialog(null, "Ninguem estÃ¡ na fila normal.");
+						JOptionPane.showMessageDialog(null, "Ninguem está na fila normal.");
 					}
 					System.out.print("\n");
 					break;
@@ -82,9 +82,9 @@ public class AppProjeto {
 					mediaPrioritaria = (float)prioritario.getPessoasAtendidas()/somador * 100;
 					
 					if(somador>0) {
-						JOptionPane.showMessageDialog(null,String.format("De um total de %d pessoas atendidas, %.2f%% foi na fila normal e %.2f%% foi na fila prioritaria.\n", somador, mediaNormal, mediaPrioritaria));
+						JOptionPane.showMessageDialog(null,String.format("De um total de %d pessoas atendidas, %.2f%% foi na fila normal e %.2f%% foi na fila prioritária.\n", somador, mediaNormal, mediaPrioritaria));
 					}else {
-						JOptionPane.showMessageDialog(null, "NinguÃ©m foi atendido ainda.");
+						JOptionPane.showMessageDialog(null, "Ninguém foi atendido ainda.");
 					}		
 						
 					break;
